@@ -45,8 +45,3 @@ Style/RedundantReturn:
 
 Style/Semicolon:
   AllowAsExpressionSeparator: true
-
-Style/GuardClause:
-  Exclude:
-    - 'app/controllers/messages_controller.rb'
-    - 'app/controllers/users_controller.rb'

@@ -2,10 +2,12 @@
   "RSpec": {
     "coverage": {
       "/home/mauricio-p/udemy/ruby_on_rails/univ_app/app/controllers/courses_controller.rb": [
+        null,
+        null,
         1,
         1,
         null,
-        null,
+        1,
         null
       ],
       "/home/mauricio-p/udemy/ruby_on_rails/univ_app/app/controllers/application_controller.rb": [
@@ -28,13 +30,13 @@
         null
       ],
       "/home/mauricio-p/udemy/ruby_on_rails/univ_app/app/controllers/pages_controller.rb": [
-        1,
-        1,
         null,
         null,
+        1,
+        1,
         null
       ]
     },
-    "timestamp": 1577654423
+    "timestamp": 1577655532
   }
 }

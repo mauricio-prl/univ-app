@@ -1,24 +1,5 @@
-# README
+# University-app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple exercise from [Complete ruby on rails developer course](https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course/).
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Here you can manage the grades of students.

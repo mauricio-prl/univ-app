@@ -1,0 +1,52 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'log/**/*'
+    - 'node_modules/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 25
+
+Naming/PredicateName:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/EachWithObject:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/RedundantReturn:
+  Enabled: false
+
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
+Style/GuardClause:
+  Exclude:
+    - 'app/controllers/messages_controller.rb'
+    - 'app/controllers/users_controller.rb'

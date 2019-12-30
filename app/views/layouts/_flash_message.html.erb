@@ -1,0 +1,11 @@
+<% flash.each do |type, message| %>
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <div class="card-panel <%= alert_classes[type] %>" id="fade-out-target">
+        <div class="card-content white-text">
+          <%= message %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

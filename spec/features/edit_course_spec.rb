@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'Edit course' do
+RSpec.describe 'Edit course', type: :feature do
   let!(:course) { create(:course) }
   let!(:other_course) { create(:course, short_name: '123') }
 
   context 'when valid attributes' do
     scenario 'good' do
       visit edit_course_path(course)
-      
+
       edit_course
     end
   end

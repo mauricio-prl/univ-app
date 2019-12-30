@@ -35,8 +35,36 @@
         1,
         1,
         null
+      ],
+      "/home/mauricio-p/udemy/ruby_on_rails/univ_app/spec/models/course_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null,
+        null
+      ],
+      "/home/mauricio-p/udemy/ruby_on_rails/univ_app/app/models/course.rb": [
+        null,
+        null,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/mauricio-p/udemy/ruby_on_rails/univ_app/app/models/application_record.rb": [
+        null,
+        null,
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1577675716
+    "timestamp": 1577680725
   }
 }

@@ -1,4 +1,10 @@
 <nav>
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+  </ul>
   <div class="container">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo right">Tech University</a>
@@ -6,6 +12,11 @@
         <li><%= link_to 'Courses', root_path %></li>
         <li><%= link_to 'Enrollments', '#' %></li>
         <li><%= link_to 'New Course', new_course_path %></li>
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+            Account<i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

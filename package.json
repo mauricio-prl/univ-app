@@ -1,5 +1,7 @@
 {
   "name": "univ_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
 }

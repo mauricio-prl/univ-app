@@ -1,7 +1,20 @@
-# frozen_string_literal: true
-
 class CoursesController < ApplicationController
-  def index; end
+  def index
+    @courses = Course.order(:name)
+  end
 
-  def new; end
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
 end

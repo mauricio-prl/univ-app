@@ -1,0 +1,12 @@
+<div class="col s6 m6">
+  <div class="card #e3f2fd blue darken-1">
+    <div class="card-content white-text">
+      <span class="card-title"><%= course.short_name %>: <%= course.name %></span>
+      <p><%= course.description %></p>
+    </div>
+    <div class="card-action">
+      <a href="#">Enroll</a>
+      <%= link_to 'Info', course_path(course) %>
+    </div>
+  </div>
+</div>

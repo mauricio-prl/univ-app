@@ -37,6 +37,7 @@ group :development do
 end
 
 group :test do
+  gem 'rails-controller-testing'
   gem 'rubocop', require: false
   gem 'shoulda-matchers'
 end

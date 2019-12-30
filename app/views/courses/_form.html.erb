@@ -1,23 +1,5 @@
 <div class="container">
-  <div class="center-align">
-    <% if @course.errors.any? %>
-      <div class="row">
-        <div class="col s12 m12 l12">
-          <div class="card-panel #ff8a80 red accent-1 ">
-            <div class="card-content white-text">
-              <h5><%= pluralize(@course.errors.count, 'error') %>
-              prohibited your course to being created:</h5>
-              <ul>
-                <% @course.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'errors/messages', obj: @course %>
   
   <div class="col s12 m12 l12">
     <div class="card-panel">

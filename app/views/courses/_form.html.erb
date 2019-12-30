@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="center-align">
+    <% if @course.errors.any? %>
+      You got these errors:
+      <ul>
+        <% @course.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <%= form_for(@course, html: { class: 'col s12'}) do |f| %>
+      <div class="row">
+        <div class="input-field">
+          <%= f.text_field :name, autofocus: true %>
+          <%= f.label :name, 'Course Name' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <%= f.text_field :short_name %>
+          <%= f.label :short_name, 'Code' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: 'materialize-textarea' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="file-field input-field">
+          <%= button_tag(class: 'btn #00e676 green accent-3') do %>
+            <% if @course.new_record? %>
+              Create Course <i class="material-icons right">send</i>
+            <% else %>
+              Update Course <i class="material-icons right">send</i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

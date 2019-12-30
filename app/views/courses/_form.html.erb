@@ -1,46 +1,59 @@
 <div class="container">
   <div class="center-align">
     <% if @course.errors.any? %>
-      You got these errors:
-      <ul>
-        <% @course.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="card-panel #ff8a80 red accent-1 ">
+            <div class="card-content white-text">
+              <h5><%= pluralize(@course.errors.count, 'error') %>
+              prohibited your course to being created:</h5>
+              <ul>
+                <% @course.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
   
-  <div class="row">
-    <%= form_for(@course, html: { class: 'col s12'}) do |f| %>
+  <div class="col s12 m12 l12">
+    <div class="card-panel">
       <div class="row">
-        <div class="input-field">
-          <%= f.text_field :name, autofocus: true %>
-          <%= f.label :name, 'Course Name' %>
-        </div>
+        <%= form_for(@course, html: { class: 'col s12'}) do |f| %>
+          <div class="row">
+            <div class="input-field">
+              <%= f.text_field :name, autofocus: true %>
+              <%= f.label :name, 'Course Name' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <%= f.text_field :short_name %>
+              <%= f.label :short_name, 'Code' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: 'materialize-textarea' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="file-field input-field">
+              <%= button_tag(class: 'btn #00e676 green accent-3 right') do %>
+                <% if @course.new_record? %>
+                  Create Course <i class="material-icons right">send</i>
+                <% else %>
+                  Update Course <i class="material-icons right">send</i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <div class="row">
-        <div class="input-field">
-          <%= f.text_field :short_name %>
-          <%= f.label :short_name, 'Code' %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field">
-          <%= f.label :description %>
-          <%= f.text_area :description, class: 'materialize-textarea' %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="file-field input-field">
-          <%= button_tag(class: 'btn #00e676 green accent-3') do %>
-            <% if @course.new_record? %>
-              Create Course <i class="material-icons right">send</i>
-            <% else %>
-              Update Course <i class="material-icons right">send</i>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

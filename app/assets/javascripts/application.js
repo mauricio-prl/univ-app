@@ -19,5 +19,6 @@
 
 $(document).on('turbolinks:load', function() {
   $('.sidenav').sidenav();
-  $(".dropdown-trigger").dropdown();
+  $('.dropdown-trigger').dropdown();
+  $('#fade-out-target').fadeOut(4000);
 })

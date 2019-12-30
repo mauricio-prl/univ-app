@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.6.5
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
@@ -41,11 +41,7 @@ jobs:
             sudo apt-get install nodejs
             gem install bundler
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+            yarn add jquery
 
       # Database setup
       - run: cp config/database.yml.example config/database.yml

@@ -1,2 +1,17 @@
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<h1 class="center-align"><%= @student.name %> information:</h1>
+
+<ul class="collection">
+  <li class="collection-item">email: <%= @student.email %></li>
+  <li class="collection-item">Created at: <%= @student.created_at %></li>
+  <li class="collection-item">Last update: <%= @student.updated_at %></li>
+</ul>
+
+<p class="right">
+  <%= link_to 'Edit student', edit_student_path(@student), 
+    class: 'btn waves-effect waves-light btn-small #00e676 green accent-3' %>
+
+  <%= link_to 'Delete student', student_path(@student), 
+    method: :delete, data: { confirm: 'Are you sure?' }, 
+    class: 'btn waves-effect waves-light btn-small #00e676 red accent-3' %>
+</p>
+

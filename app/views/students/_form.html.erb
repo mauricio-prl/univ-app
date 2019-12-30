@@ -1,0 +1,35 @@
+<div class="container">
+  <%= render 'errors/messages', obj: @student %>
+  
+  <div class="col s12 m12 l12">
+    <div class="card-panel">
+      <div class="row">
+        <%= form_for(@student, html: { class: 'col s12'}) do |f| %>
+          <div class="row">
+            <div class="input-field">
+              <%= f.text_field :name, autofocus: true %>
+              <%= f.label :name, 'Student Name' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <%= f.label :email %>
+              <%= f.email_field :email, class: 'materialize-textarea' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="file-field input-field">
+              <%= button_tag(class: 'btn #00e676 green accent-3 right') do %>
+                <% if @student.new_record? %>
+                  Create Student <i class="material-icons right">send</i>
+                <% else %>
+                  Update Student <i class="material-icons right">send</i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

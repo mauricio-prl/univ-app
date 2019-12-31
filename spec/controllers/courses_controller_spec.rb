@@ -121,7 +121,7 @@ RSpec.describe CoursesController, type: :controller do
       it 'redirects to root' do
         subject
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(course)
       end
     end
 

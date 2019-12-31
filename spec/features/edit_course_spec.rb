@@ -46,6 +46,6 @@ RSpec.describe 'Edit course', type: :feature do
     find("button[type='submit']").click
 
     expect(page).to have_content('Course successfully updated.')
-    expect(page).to have_current_path(root_path)
+    expect(page).to have_current_path(course_path(course))
   end
 end

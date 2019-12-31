@@ -12,7 +12,7 @@ RSpec.describe 'Edit student', type: :feature do
     find("button[type='submit']").click
 
     expect(page).to have_content('Student successfully updated.')
-    expect(page).to have_current_path(students_path)
+    expect(page).to have_current_path(student_path(student))
   end
 
   scenario 'bad - invald atributes' do

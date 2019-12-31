@@ -7,10 +7,12 @@
 </ul>
 
 <p class="right">
-  <%= link_to 'Edit student', edit_student_path(@student), 
+  <%= link_to '<i class="material-icons right">create</i>Edit student'.html_safe, 
+    edit_student_path(@student), 
     class: 'btn waves-effect waves-light btn-small #00e676 green accent-3' %>
-
-  <%= link_to 'Delete student', student_path(@student), 
+  
+  <%= link_to '<i class="material-icons right">delete_forever</i>Delete student'.html_safe, 
+    student_path(@student), 
     method: :delete, data: { confirm: 'Are you sure?' }, 
     class: 'btn waves-effect waves-light btn-small #00e676 red accent-3' %>
 </p>

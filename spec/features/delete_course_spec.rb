@@ -5,7 +5,7 @@ RSpec.describe 'Destroy course', type: :feature do
 
   scenario 'good' do
     visit course_path(course)
-    click_link 'Delete Course'
+    click_link 'Delete course'
 
     expect(page).to have_content('Course successfully deleted.')
     expect(page).to have_current_path(root_path)

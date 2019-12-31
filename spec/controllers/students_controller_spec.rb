@@ -117,7 +117,7 @@ RSpec.describe StudentsController, type: :controller do
       it 'redirects to students' do
         subject
 
-        expect(response).to redirect_to(students_path)
+        expect(response).to redirect_to(student)
       end
     end
 

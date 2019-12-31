@@ -5,4 +5,6 @@ class Student < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+
+  has_secure_password
 end

@@ -9,6 +9,7 @@ RSpec.describe 'Edit student', type: :feature do
     find_link(href: "/students/#{student.id}/edit").click
     fill_in 'Name', with: 'New name'
     fill_in 'Email', with: 'new_email@example.com'
+    fill_in 'Password', with: 'new-password'
     find("button[type='submit']").click
 
     expect(page).to have_content('Student successfully updated.')
@@ -21,6 +22,7 @@ RSpec.describe 'Edit student', type: :feature do
     find_link(href: "/students/#{student.id}/edit").click
     fill_in 'Name', with: ''
     fill_in 'Email', with: 'invalid_email.something.@com'
+    fill_in 'Password', with: ''
     find("button[type='submit']").click
 
     expect(page).to have_content('Name can\'t be blank')

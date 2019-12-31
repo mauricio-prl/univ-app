@@ -23,7 +23,8 @@ RSpec.describe StudentsController, type: :controller do
         post :create, params: {
           student: {
             name: 'Test',
-            email: 'test@email.com'
+            email: 'test@email.com',
+            password: 'password'
           }
         }
       }
@@ -50,7 +51,8 @@ RSpec.describe StudentsController, type: :controller do
         post :create, params: {
           student: {
             name: nil,
-            email: 'invalid.email.com'
+            email: 'invalid.email.com',
+            password: nil
           }
         }
       }
@@ -95,7 +97,8 @@ RSpec.describe StudentsController, type: :controller do
         put :update, params: {
           id: student.id, student: {
             name: 'New name',
-            email: 'new-email@test.com'
+            email: 'new-email@test.com',
+            password: 'new-passord'
           }
         }
       }
@@ -106,6 +109,7 @@ RSpec.describe StudentsController, type: :controller do
 
         expect(student.name).to eq('New name')
         expect(student.email).to eq('new-email@test.com')
+        expect(student.authenticate('new-passord')).to eq(student)
       end
 
       it 'has flash notice' do

@@ -12,6 +12,7 @@ RSpec.describe 'Create student', type: :feature do
     expect(page).to have_current_path(new_student_path)
     fill_in 'Student Name', with: 'Student'
     fill_in 'Email', with: 'student@email.com'
+    fill_in 'Password', with: 'password'
     find("button[type='submit']").click
 
     expect(page).to have_content('Student successfully created.')
@@ -27,11 +28,10 @@ RSpec.describe 'Create student', type: :feature do
       find_link('Sign up').click
     end
     expect(page).to have_current_path(new_student_path)
-    fill_in 'Student Name', with: ''
-    fill_in 'Email', with: ''
     find("button[type='submit']").click
 
     expect(page).to have_content('Name can\'t be blank')
     expect(page).to have_content('Email is invalid')
+    expect(page).to have_content('Password can\'t be blank')
   end
 end

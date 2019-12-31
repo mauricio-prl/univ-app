@@ -18,6 +18,12 @@
             </div>
           </div>
           <div class="row">
+            <div class="input-field">
+              <%= f.label :password %>
+              <%= f.password_field :password %>
+            </div>
+          </div>
+          <div class="row">
             <div class="file-field input-field">
               <%= button_tag(class: 'btn #00e676 green accent-3 right') do %>
                 <% if @student.new_record? %>

@@ -24,7 +24,8 @@ RSpec.describe StudentsController, type: :controller do
           student: {
             name: 'Test',
             email: 'test@email.com',
-            password: 'password'
+            password: 'password',
+            password_confirmation: 'password'
           }
         }
       }
@@ -67,6 +68,29 @@ RSpec.describe StudentsController, type: :controller do
         expect(response).to render_template(:new)
       end
     end
+
+    context 'when the password does not match with password confirmation' do
+      subject { 
+        post :create, params: {
+          student: {
+            name: 'Some name',
+            email: 'valid.email@email.com',
+            password: 'password',
+            password_confirmation: nil
+          }
+        }
+      }
+
+      it 'does not creates the student' do
+        expect{ subject }.not_to change(Student, :count)
+      end
+
+      it 'renders new' do
+        subject
+
+        expect(response).to render_template(:new)
+      end
+    end
   end
 
   describe "GET #show" do
@@ -98,7 +122,8 @@ RSpec.describe StudentsController, type: :controller do
           id: student.id, student: {
             name: 'New name',
             email: 'new-email@test.com',
-            password: 'new-passord'
+            password: 'new-passord',
+            password_confirmation: 'new-passord'
           }
         }
       }
@@ -141,6 +166,27 @@ RSpec.describe StudentsController, type: :controller do
 
         expect(student.name).not_to eq(nil)
         expect(student.email).not_to eq(nil)
+      end
+    end
+
+    context 'when password does not match with password confirmation' do
+      subject {
+        put :update, params: {
+          id: student.id, student: {
+            name: 'New name',
+            email: 'new_email@test.com',
+            password: 'new-password',
+            password_confirmation: 'another-password'
+          }
+        }
+      }
+
+      it 'does not update the student' do
+        subject
+        student.reload
+
+        expect(student.name).not_to eq('New name')
+        expect(student.email).not_to eq('new_email@test.com')
       end
     end
   end

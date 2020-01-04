@@ -7,20 +7,20 @@
         <%= form_for(@course, html: { class: 'col s12'}) do |f| %>
           <div class="row">
             <div class="input-field">
-              <%= f.text_field :name, autofocus: true %>
-              <%= f.label :name, 'Course Name' %>
+              <%= f.text_field :name, autofocus: true, placeholder: 'Ex: Math' %>
+              <%= f.label :name, 'Course Name', class: 'active' %>
             </div>
           </div>
           <div class="row">
             <div class="input-field">
-              <%= f.text_field :short_name %>
-              <%= f.label :short_name, 'Code' %>
+              <%= f.text_field :short_name, placeholder: 'Ex: CFB345' %>
+              <%= f.label :short_name, 'Code', class: 'active' %>
             </div>
           </div>
           <div class="row">
             <div class="input-field">
-              <%= f.label :description %>
               <%= f.text_area :description, class: 'materialize-textarea' %>
+              <%= f.label :description, class: 'active' %>
             </div>
           </div>
           <div class="row">

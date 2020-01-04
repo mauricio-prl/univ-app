@@ -10,6 +10,7 @@ RSpec.describe 'Edit student', type: :feature do
     fill_in 'Name', with: 'New name'
     fill_in 'Email', with: 'new_email@example.com'
     fill_in 'Password', with: 'new-password'
+    fill_in 'Password confirmation', with: 'new-password'
     find("button[type='submit']").click
 
     expect(page).to have_content('Student successfully updated.')

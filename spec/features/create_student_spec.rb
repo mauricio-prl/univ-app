@@ -13,6 +13,7 @@ RSpec.describe 'Create student', type: :feature do
     fill_in 'Student Name', with: 'Student'
     fill_in 'Email', with: 'student@email.com'
     fill_in 'Password', with: 'password'
+    fill_in 'Password confirmation', with: 'password'
     find("button[type='submit']").click
 
     expect(page).to have_content('Student successfully created.')
@@ -33,5 +34,16 @@ RSpec.describe 'Create student', type: :feature do
     expect(page).to have_content('Name can\'t be blank')
     expect(page).to have_content('Email is invalid')
     expect(page).to have_content('Password can\'t be blank')
+  end
+
+  scenario 'bad - password and password confirmation does not match' do
+    visit new_student_path
+    fill_in 'Student Name', with: 'Student'
+    fill_in 'Email', with: 'student@email.com'
+    fill_in 'Password', with: 'password'
+    fill_in 'Password confirmation', with: 'not-password'
+    find("button[type='submit']").click
+
+    expect(page).to have_content('Password confirmation doesn\'t match Password')
   end
 end

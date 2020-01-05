@@ -7,5 +7,9 @@ RSpec.describe Student, type: :model do
     it { create(:student); is_expected.to validate_uniqueness_of(:email) }
     it { is_expected.not_to allow_value('invalid_email.exemple.com').for(:email) }
     it { is_expected.to allow_value('valid_email@exemple.com').for(:email) }
-  end  
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_and_belong_to_many(:courses) }
+  end
 end

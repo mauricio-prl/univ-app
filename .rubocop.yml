@@ -49,3 +49,8 @@ Style/Semicolon:
 Style/GuardClause:
   Exclude:
     - 'app/controllers/students_controller.rb'
+    - 'app/controllers/student_courses_controller.rb'
+
+Layout/ArgumentAlignment:
+  Exclude:
+    - 'app/controllers/student_courses_controller.rb'

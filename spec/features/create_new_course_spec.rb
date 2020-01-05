@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Create a new Course', type: :feature do
+  let!(:student) { create(:student) }
+  
+  before do
+    sign_in(student)
+  end
+  
   context 'when valid attributes' do
     scenario 'user creates a new course' do
       visit new_course_path

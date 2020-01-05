@@ -7,14 +7,15 @@
   <li class="collection-item">Last update: <%= @course.updated_at %></li>
 </ul>
 
-<p class="right">
-  <%= link_to '<i class="material-icons right">create</i>Edit course'.html_safe, 
-    edit_course_path(@course), 
-    class: 'btn waves-effect waves-light btn-small #00e676 green accent-3' %>
-  
-  <%= link_to '<i class="material-icons right">delete_forever</i>Delete course'.html_safe, 
-    course_path(@course), 
-    method: :delete, data: { confirm: 'Are you sure?' }, 
-    class: 'btn waves-effect waves-light btn-small #00e676 red accent-3' %>
-</p>
-
+<% if logged_in? %>
+  <p class="right">
+    <%= link_to '<i class="material-icons right">create</i>Edit course'.html_safe, 
+      edit_course_path(@course), 
+      class: 'btn waves-effect waves-light btn-small #00e676 green accent-3' %>
+    
+    <%= link_to '<i class="material-icons right">delete_forever</i>Delete course'.html_safe, 
+      course_path(@course), 
+      method: :delete, data: { confirm: 'Are you sure?' }, 
+      class: 'btn waves-effect waves-light btn-small #00e676 red accent-3' %>
+  </p>
+<% end %>

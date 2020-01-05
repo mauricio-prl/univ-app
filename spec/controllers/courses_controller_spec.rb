@@ -10,7 +10,9 @@ RSpec.describe CoursesController, type: :controller do
   end
 
   describe 'GET #new' do
+    let!(:student) { create(:student) }
     it 'returns http status ok' do
+      login(student)
       get :new
 
       expect(response).to have_http_status(:ok)
@@ -18,6 +20,12 @@ RSpec.describe CoursesController, type: :controller do
   end
 
   describe 'POST #create' do
+    let!(:student) { create(:student) }
+
+    before do
+      login(student)
+    end
+
     context 'when valid attributes' do
       subject {
         post :create, params: {
@@ -61,7 +69,7 @@ RSpec.describe CoursesController, type: :controller do
         expect{ subject }.not_to change(Course, :count)
       end
 
-      it 'render new' do
+      it 'renders new' do
         subject
 
         expect(response).to render_template(:new)
@@ -80,9 +88,11 @@ RSpec.describe CoursesController, type: :controller do
   end
 
   describe 'GET #edit' do
+    let!(:student) { create(:student) }
     let!(:course) { create(:course) }
 
     it 'has have_http_status ok' do
+      login(student)
       get :edit, params: { id: course.id }
 
       expect(response).to have_http_status(:ok)
@@ -90,7 +100,12 @@ RSpec.describe CoursesController, type: :controller do
   end
 
   describe 'PUT #update' do
+    let!(:student) { create(:student) }
     let!(:course) { create(:course) }
+
+    before do
+      login(student)
+    end
 
     context 'when valid attributes' do
       subject { 
@@ -154,7 +169,12 @@ RSpec.describe CoursesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let!(:student) { create(:student) }
     let!(:course) { create (:course) }
+
+    before do
+      login(student)
+    end
 
     subject {
       delete :destroy, params: { id: course.id }

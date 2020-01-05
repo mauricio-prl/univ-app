@@ -1,0 +1,7 @@
+<% if logged_in? %>
+  <li><%= link_to 'Edit your account', edit_student_path(current_user) %></li>
+  <li><%= link_to 'Logout', session_path(current_user), method: :delete %></li>
+<% else %>
+  <li><%= link_to 'Sign up', new_student_path %></li>
+  <li><%= link_to 'Login', login_path %></li>
+<% end %>

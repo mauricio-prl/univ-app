@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Edit course', type: :feature do
+  let!(:student) { create(:student) }
   let!(:course) { create(:course) }
   let!(:other_course) { create(:course, short_name: '123') }
+
+  before do
+    sign_in(student)
+  end
 
   context 'when valid attributes' do
     scenario 'good' do

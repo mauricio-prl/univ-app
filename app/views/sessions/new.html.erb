@@ -1,0 +1,32 @@
+<div class="container">
+  <h3 class="align center">Log in:</h3>  
+  <div class="col s12 m12 l12">
+    <div class="card-panel">
+      <div class="row">
+        <%= form_for(:session, html: { class: 'col s12'}, url: '/sessions') do |f| %>
+          <div class="row">
+            <div class="input-field">
+              <%= f.email_field :email, class: 'materialize-textarea',
+                autofocus: true,
+                placeholder: 'joao@email.com' %>
+              <%= f.label :email, class: 'active' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <%= f.password_field :password, placeholder: 'Your password' %>
+              <%= f.label :password, class: 'active' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="file-field input-field">
+              <%= button_tag(class: 'btn #00e676 green accent-3 right') do %>
+                Login <i class="material-icons right">send</i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

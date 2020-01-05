@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CoursesController < ApplicationController
+  skip_before_action :require_login, only: %i[index show]
   before_action :set_course, except: %i[index new create]
 
   def index

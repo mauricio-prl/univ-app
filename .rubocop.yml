@@ -45,3 +45,7 @@ Style/RedundantReturn:
 
 Style/Semicolon:
   AllowAsExpressionSeparator: true
+
+Style/GuardClause:
+  Exclude:
+    - 'app/controllers/students_controller.rb'

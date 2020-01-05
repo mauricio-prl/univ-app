@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe StudentsController, type: :controller do
+  let!(:student) { create(:student) }
+
   describe "GET #index" do
     it "returns http ok" do
+      login(student)
       get :index
 
       expect(response).to have_http_status(:ok)
@@ -10,10 +13,40 @@ RSpec.describe StudentsController, type: :controller do
   end
 
   describe "GET #new" do
-    it "returns http ok" do
-      get :new
+    subject { get :new }
 
-      expect(response).to have_http_status(:ok)
+    context 'when not logged in' do
+      it "returns http ok" do
+        subject
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when logged in' do
+      let!(:student) { create(:student) }
+
+      before do
+        login(student)
+      end
+
+      it 'returns http found' do
+        subject
+
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'has flash[:alert]' do
+        subject
+
+        expect(flash[:alert]).to eq('You must to logout first.')
+      end
+
+      it 'redirects to students' do
+        subject
+
+        expect(response).to redirect_to(students_path)
+      end
     end
   end
 
@@ -97,6 +130,7 @@ RSpec.describe StudentsController, type: :controller do
     let!(:student) { create(:student) }
 
     it "returns http ok" do
+      login(student)
       get :show, params: { id: student.id }
 
       expect(response).to have_http_status(:ok)
@@ -106,15 +140,47 @@ RSpec.describe StudentsController, type: :controller do
   describe "GET #edit" do
     let!(:student) { create(:student) }
 
-    it "returns http ok" do
-      get :edit, params: { id: student.id }
+    context 'when user tries to edit your own account' do
+      before do
+        login(student)
+      end
 
-      expect(response).to have_http_status(:ok)
+      it "returns http ok" do
+        get :edit, params: { id: student.id }
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when user tries to edit another account' do
+      let!(:other_student) { create(:student) }
+
+      subject { get :edit, params: { id: other_student.id } }
+
+      before do
+        login(student)
+      end
+
+      it "returns http found" do
+        subject
+
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'redirects to student path' do
+        subject
+
+        expect(response).to redirect_to(student_path(student))
+      end
     end
   end
 
   describe "GET #update" do
     let!(:student) { create(:student) }
+
+    before do
+      login(student)
+    end
 
     context 'when valid atributes' do
       subject {
@@ -189,31 +255,94 @@ RSpec.describe StudentsController, type: :controller do
         expect(student.email).not_to eq('new_email@test.com')
       end
     end
+
+    context 'when user tries to update another account' do
+      let!(:other_student) { create(:student) }
+
+      subject {
+        put :update, params: {
+          id: other_student.id, student: {
+            name: 'New name',
+            email: 'new-email@test.com',
+            password: 'new-passord',
+            password_confirmation: 'new-passord'
+          }
+        }
+      }
+
+      before do
+        login(student)
+      end
+
+      it 'does not update the student' do
+        subject
+        other_student.reload
+
+        expect(other_student.name).not_to eq('New name')
+        expect(other_student.email).not_to eq('new-email@test.com')
+      end
+    end
   end
 
   describe "GET #destroy" do
     let!(:student) { create(:student) }
 
-    subject { 
-      delete :destroy, params: {
-        id: student.id
+    context 'when user deletes their own account' do
+      subject { 
+        delete :destroy, params: {
+          id: student.id
+        }
       }
-    }
 
-    it "deletes the student" do
-      expect{ subject }.to change(Student, :count).by(-1)
+      before do
+        login(student)
+      end
+
+      it "deletes the student" do
+        expect{ subject }.to change(Student, :count).by(-1)
+      end
+
+      it 'has flash notice' do
+        subject
+
+        expect(flash[:notice]).to eq('Student successfully deleted.')
+      end
+
+      it 'redirects to students' do
+        subject
+
+        expect(response).to redirect_to(login_path)
+      end
     end
 
-    it 'has flash notice' do
-      subject
+    context 'when user tries to delete another account' do
+      let!(:other_student) { create(:student) }
 
-      expect(flash[:notice]).to eq('Student successfully deleted.')
-    end
+      subject { 
+        delete :destroy, params: {
+          id: other_student.id
+        }
+      }
 
-    it 'renders students' do
-      subject
+      before do
+        login(student)
+      end
 
-      expect(response).to redirect_to(students_path)
+      it 'does not delete the student' do
+        expect{ subject }.not_to change(Student, :count)
+      end
+
+      it 'has flash alert' do
+        subject
+
+        expect(flash[:alert]).to eq('You can do this with your own account.')
+      end
+
+      it 'redirects to student' do
+        subject
+
+        expect(response).to redirect_to(student_path(student))
+      end
     end
   end
 end

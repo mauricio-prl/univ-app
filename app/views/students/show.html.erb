@@ -2,6 +2,24 @@
 
 <ul class="collection">
   <li class="collection-item">email: <%= @student.email %></li>
+  <li class="collection-item">
+    Course enrollments: 
+    <% if @student.courses.empty? %>
+      None
+    <% else %>
+      <ul class="collection">
+        <% @student.courses.each do |course| %>
+          <li class="collection-item">
+            <%= link_to course.name, course_path(course) %>
+            <span class="badge">
+              <%= link_to 'Complete', course_enroll_path(course_id: course.id), 
+              method: :delete if current_user == @student %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </li>
   <li class="collection-item">Created at: <%= @student.created_at %></li>
   <li class="collection-item">Last update: <%= @student.updated_at %></li>
 </ul>

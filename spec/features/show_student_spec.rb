@@ -10,7 +10,9 @@ RSpec.describe 'Show student', type: :feature do
 
     scenario 'it has student information' do
       visit students_path
-      find_link(href: "/students/#{student.id}").click
+      within('.col.s4.m4') do
+        find_link(href: "/students/#{student.id}").click
+      end
 
       expect(page).to have_content("#{student.name} information:")
       expect(page).to have_content(student.email)
